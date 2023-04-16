@@ -2,8 +2,7 @@
 def read_input():
     input_type = input().strip().upper()
     if input_type == 'F':
-        input_f = "06"
-        input_f = "tests/" + input_f
+        input_f = "tests/06"
         with open(input_f) as file:
             pattern = file.readline()
             text = file.readline()
