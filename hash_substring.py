@@ -7,7 +7,7 @@ def read_input():
         with open(input_f) as file:
             pattern = file.readline()
             text = file.readline()
-    elif input_type == 'I:
+    elif input_type == 'I':
         pattern = input()
         text = input()
     else:
