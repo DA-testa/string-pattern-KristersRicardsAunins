@@ -1,6 +1,6 @@
 #221RDC033
 def read_input():
-    input_type = input("F for file, I for keyboard: ").strip().upper()
+    input_type = input().strip().upper()
     if input_type == 'F':
         input_f = "06"
         input_f = "tests/" + input_f
