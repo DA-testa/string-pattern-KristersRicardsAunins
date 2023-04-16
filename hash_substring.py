@@ -4,20 +4,21 @@ import os
 def read_input():
     # this function needs to aquire input both from keyboard and file
     # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
-    input_type = input()
+    input_type = input()[0]
     if input_type == 'F':
-        fails = input()
-        atrasanas = './tests/'
-        faila_vieta = os.path.join(atrasanas, fails)
-        with open(faila_vieta, mode="r") as f:
-            pattern = f.readline().strip()
-            text = f.readline().strip()
+        ievad = "06"
+        if 'a' in ievad:
+            return
+        ievad = "tests/" + ievad
+        with open(ievad) as file:
+            pattern = file.readline()
+            txt = file.readline()
     elif input_type == 'I':
-        pattern = input().strip()
-        text = input().strip()
+        pattern = input()
+        txt = input()
     else:
-        print("error")
-    return pattern, text
+        return
+    return (pattern, txt)
     
     # after input type choice
     # read two lines 
@@ -31,35 +32,38 @@ def read_input():
 
 def print_occurrences(output):
     # this function should control output, it doesn't need any return
-    print(' '.join(map(str, output)))
+    print(*output, atd = " ")
 
 def get_occurrences(pattern, text):
     # this function should find the occurances using Rabin Karp alghoritm 
-    p =31
-    m = len(pattern)
-    n = len(text)
-    p_pow = [1] * (n - m + 1)
-    for i in range(1, n - m + 1):
-        p_pow[i] = (p_pow[i - 1] * p) % (10**9 + 9)
-    pattern_hash = 0
-    text_hash = 0
-    for i in range (m):
-        pattern_hash = (pattern_hash + (ord(pattern[i]) - ord('a') + 1) * p_pow[m - i - 1]) % (10**9 + 9)
-        text_hash = (text_hash + (ord(text[i]) - ord('a') + 1) * p_pow[m - i -1]) % (10**9 + 9)
-    occurrences= []
-    for i in range(n - m + 1):
-        if pattern_hash == text_hash and pattern == text[i:i + m]:
-            occurrences.append(i)
-        if i < n - m:
-            text_hash = (text_hash - (ord(text[i]) - ord('a') + 1) * p_pow[m - 1]) % (10**9 + 9)
-            text_hash = (text_hash * p + (ord(text[i + m]) - ord('a') + 1)) % (10**9 + 9)
-            text_hash = (text_hash + (10**9 + 9)) % (10**9 + 9)
-            return occurrences
+    hash = []
+    cip = []
+    def atrast_burty(input_type):
+        for i in range(len(hash)):
+            if (input_type == hash[i][0]):
+                return hash[i][1]
+        return(-1)
+    k = len(pattern)-1
+    j = len(text)
+    l = 100**(n-1)
+    n = 0
+    for i in range (n):
+        n *= 100
+        t = find_letter(txt[i])
+        if(t!=-1):
+            n+=t
+        else:
+            hash.append([text[i], len(hash)+1])
+            n+=len(hash)
+    n.append(n)
     # and return an iterable variable
     #return [0]
-
-
+    
 # this part launches the functions
-if __name__ == "__main__":
+if __name__ == '__main__':
+    input_data = read_input()
+    if input_data is not None:
+        pattern, text = input_data
+        occurrences = get_occurrences(pattern, text)
     print_occurrences(get_occurrences(*read_input()))
 
