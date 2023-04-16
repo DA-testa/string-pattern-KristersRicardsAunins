@@ -1,20 +1,18 @@
 #221RDC033
 def read_input():
-    input_type = input().strip().upper()
-    if input_type == 'F:
+    input_type = input("F for file, I for keyboard: ").strip().upper()
+    if input_type == 'F':
         input_f = "06"
-        if 'a' in input_f:
-            return
         input_f = "tests/" + input_f
         with open(input_f) as file:
-            fred = file.readline()
-            txt = file.readline()
+            pattern = file.readline()
+            text = file.readline()
     elif input_type == 'I:
-        fred = input()
-        txt = input()
+        pattern = input()
+        text = input()
     else:
         return
-    return (fred, txt)
+    return (pattern, text)
 
 def print_occurrences(output):
    print(*output, sep=' ')
