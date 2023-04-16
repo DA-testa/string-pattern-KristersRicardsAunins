@@ -25,7 +25,7 @@ def read_input():
     # read two lines 
     # first line is pattern 
     # second line is text in which to look for pattern 
-    # return both lines in one return
+
     # this is the sample return, notice the rstrip function
     #return (input().rstrip(), input().rstrip())
 
