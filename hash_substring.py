@@ -1,11 +1,6 @@
-# python3
-import os
-
+#221RDC033
 def read_input():
-    # this function needs to aquire input both from keyboard and file
-    # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
-    
-    input_type = input()[0]
+    input_type = input().strip().upper()
     if input_type == 'F':
         input_f = "06"
         if 'a' in input_f:
@@ -21,20 +16,10 @@ def read_input():
         return
     return (fred, txt)
 
-    # after input type choice
-    # read two lines 
-    # first line is pattern 
-    # second line is text in which to look for pattern 
-
-    # this is the sample return, notice the rstrip function
-    #return (input().rstrip(), input().rstrip())
-
 def print_occurrences(output):
-    # this function should control output, it doesn't need any return
-   print(*output, sep = " ")
+   print(*output, sep=' ')
 
 def get_occurrences(pattern, text):
-    # this function should find the occurances using Rabin Karp alghoritm 
     hush = []
     numb = []   
     def find_letter(input_type):
@@ -79,10 +64,6 @@ def get_occurrences(pattern, text):
         if n == numb[i]:
             y.append(i)
     return y
-    # and return an iterable variable
-    #return [0]
     
-# this part launches the functions
 if __name__ == '__main__':
     print_occurrences(get_occurrences(*read_input()))
-
