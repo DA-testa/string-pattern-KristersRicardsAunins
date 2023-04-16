@@ -54,7 +54,7 @@ def get_occurrences(pattern, text):
         else:
             hush.append([text[i], len(hush) + 1])
             n += len(hush)
-    n.append(n)
+    numb.append(n)
     for i in range(q, w):
         r = find_letter(text[i - q])
         n -= e * r
@@ -65,7 +65,7 @@ def get_occurrences(pattern, text):
         else:
             hush.append([text[i], len(hush) + 1])
             n += len(hush)
-        ns.append(n)
+        numb.append(n)
     n = 0
     for i in range(q):
         n *= 100
@@ -75,8 +75,8 @@ def get_occurrences(pattern, text):
         else:
             return[-1]
     y = []
-    for i in range(len(ns)):
-        if n == ns[i]:
+    for i in range(len(numb)):
+        if n == numb[i]:
             y.append(i)
     return y
     # and return an iterable variable
