@@ -16,7 +16,7 @@ def read_input():
             txt = file.readline()
     elif input_type == 'I':
         fred = input()
-        text = input() 
+        txt = input() 
     else: 
         return
     return (fred, txt)
