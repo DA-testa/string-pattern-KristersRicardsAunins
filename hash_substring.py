@@ -1,32 +1,66 @@
-# python3
-
+#221RDC033
 def read_input():
-    # this function needs to aquire input both from keyboard and file
-    # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
-    
-    
-    # after input type choice
-    # read two lines 
-    # first line is pattern 
-    # second line is text in which to look for pattern 
-    
-    # return both lines in one return
-    
-    # this is the sample return, notice the rstrip function
-    return (input().rstrip(), input().rstrip())
-
+    input_type = input().strip().upper()
+    if input_type == 'F':
+        input_f = "tests/06" #File Path
+        with open(input_f) as file:
+            pattern = file.readline() #First line
+            text = file.readline() #Second line
+    elif input_type == 'I':
+        pattern = input()
+        text = input()
+    return (pattern, text)
+#221RDC033
 def print_occurrences(output):
-    # this function should control output, it doesn't need any return
-    print(' '.join(map(str, output)))
-
+   print(*output, sep=' ')
+#221RDC033
 def get_occurrences(pattern, text):
-    # this function should find the occurances using Rabin Karp alghoritm 
-
-    # and return an iterable variable
-    return [0]
-
-
-# this part launches the functions
+    hush = [] #To store hash values
+    numb = [] #To store the rolling hash values
+    #221RDC033
+    def find_letter(input_type):
+        for i in range(len(hush)):
+            if (input_type == hush[i][0]):
+                return hush[i][1]
+        return(-1) #If hash value is not in the table then return -1
+    q = len(pattern) - 1
+    w = len(text)
+    e = 100**(q - 1)
+    n = 0
+    for i in range(q):
+        n *= 100
+        r = find_letter(text[i])
+        if(r != -1):
+            n += r
+        else:
+            hush.append([text[i], len(hush) + 1])
+            n += len(hush)
+    numb.append(n)
+    for i in range(q, w):
+        r = find_letter(text[i - q])
+        n -= e * r
+        n *= 100
+        r = find_letter(text[i])
+        if(r != -1):
+            n += r
+        else:
+            hush.append([text[i], len(hush) + 1])
+            n += len(hush)
+        numb.append(n)
+    n = 0
+    for i in range(q):
+        n *= 100
+        r = find_letter(pattern[i])
+        if(r != -1):
+            n += r
+        else:
+            return[-1]
+    y = []
+    for i in range(len(numb)):
+        if n == numb[i]:
+            y.append(i)
+    return y
+#221RDC033
 if __name__ == '__main__':
     print_occurrences(get_occurrences(*read_input()))
-
+#221RDC033
