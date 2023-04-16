@@ -10,13 +10,14 @@ def read_input():
         pattern = input()
         text = input()
     return (pattern, text)
-
+#221RDC033
 def print_occurrences(output):
    print(*output, sep=' ')
-
+#221RDC033
 def get_occurrences(pattern, text):
     hush = [] #To store hash values
     numb = [] #To store the rolling hash values
+    #221RDC033
     def find_letter(input_type):
         for i in range(len(hush)):
             if (input_type == hush[i][0]):
@@ -59,6 +60,7 @@ def get_occurrences(pattern, text):
         if n == numb[i]:
             y.append(i)
     return y
-    
+#221RDC033
 if __name__ == '__main__':
     print_occurrences(get_occurrences(*read_input()))
+#221RDC033
