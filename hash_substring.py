@@ -4,66 +4,85 @@ import os
 def read_input():
     # this function needs to aquire input both from keyboard and file
     # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
+    
     input_type = input()[0]
     if input_type == 'F':
-        ievad = "06"
-        if 'a' in ievad:
+        input_f = "06"
+        if 'a' in input_f:
             return
-        ievad = "tests/" + ievad
-        with open(ievad) as file:
-            pattern = file.readline()
+        input_f = "tests/" + input_f
+        with open(input_f) as file: 
+            fred = file.readline()
             txt = file.readline()
     elif input_type == 'I':
-        pattern = input()
-        txt = input()
-    else:
+        fred = input()
+        text = input() 
+    else: 
         return
-    return (pattern, txt)
-    
+    return (fred, txt)
+
     # after input type choice
     # read two lines 
     # first line is pattern 
     # second line is text in which to look for pattern 
-    
     # return both lines in one return
-    
     # this is the sample return, notice the rstrip function
     #return (input().rstrip(), input().rstrip())
 
 def print_occurrences(output):
     # this function should control output, it doesn't need any return
-    print(*output, atd = " ")
+   print(*output, u = " ")
 
 def get_occurrences(pattern, text):
     # this function should find the occurances using Rabin Karp alghoritm 
-    hash = []
-    cip = []
-    def atrast_burty(input_type):
-        for i in range(len(hash)):
-            if (input_type == hash[i][0]):
-                return hash[i][1]
+    hush = []
+    numb = []   
+    def find_letter(input_type):
+        for i in range(len(hush)):
+            if (input_type == hush[i][0]):
+                return hush[i][1]
         return(-1)
-    k = len(pattern)-1
-    j = len(text)
-    l = 100**(n-1)
+    q = len(pattern)-1
+    w = len(text)
+    e = 100**(q - 1)
     n = 0
-    for i in range (n):
+    for i in range(q):
         n *= 100
-        t = find_letter(txt[i])
-        if(t!=-1):
-            n+=t
+        r = find_letter(text[i])
+        if(r != -1):
+            n += r
         else:
-            hash.append([text[i], len(hash)+1])
-            n+=len(hash)
+            hush.append([text[i], len(hush) + 1])
+            n += len(hush)
     n.append(n)
+    for i in range(q, w):
+        r = find_letter(text[i - q])
+        n -= e * r
+        n *= 100
+        r = find_letter(text[i])
+        if(r != -1):
+            n += r
+        else:
+            hush.append([text[i], len(hush) + 1])
+            n += len(hush)
+        ns.append(n)
+    n = 0
+    for i in range(q):
+        n *= 100
+        r = find_letter(pattern[i])
+        if(r != -1):
+            n += r
+        else:
+            return[-1]
+    y = []
+    for i in range(len(ns)):
+        if n == ns[i]:
+            y.append(i)
+    return y
     # and return an iterable variable
     #return [0]
     
 # this part launches the functions
 if __name__ == '__main__':
-    input_data = read_input()
-    if input_data is not None:
-        pattern, text = input_data
-        occurrences = get_occurrences(pattern, text)
     print_occurrences(get_occurrences(*read_input()))
 
